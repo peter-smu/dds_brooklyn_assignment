@@ -3,7 +3,9 @@ DDS Assignment for 2017.03.02
 
 Synopsis
 
-    This project is to record and analyse the rolling sales of properties in staten island. The data includes different kind of properties from one, two family houses, condos, vacant land, commercial units etc. Details on square feet, address, tax, sale price and data are available for analysis. 
+    This project is to record and analyse the rolling sales of properties in staten island.
+    The data includes different kind of properties from one, two family houses, condos, 
+    vacant land, commercial units etc. Details on square feet, address, tax, sale price and data are available for analysis. 
 
 Code Example
 
