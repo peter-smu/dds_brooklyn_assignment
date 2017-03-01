@@ -1,0 +1,61 @@
+---
+---
+title: "Analysis of Statenisland_data""
+output: html
+---
+
+##Download and Analyse the dataset
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd("/Users/ASHMOHAN 1/Desktop/Data_Science/SMU_Term1_Doing_Data_science/Project1/dds_statenisland_assignment")
+
+# So, save the file as a csv and use read.csv instead
+statenisland_data <- read.csv("Data/rollingsales_statenisland.csv", header = TRUE, sep = ",")
+
+## Check the dataset that shows the rolling house sales in statenisland.
+head(statenisland_data)
+summary(statenisland_data)
+str(statenisland_data)
+names(statenisland_data)
+```
+
+##Cleaning Data downloaded
+Format some columns like square feet, year built and sale price in the dataset. 
+
+```{r Cleaning Data}
+statenisland_data$LAND.SQUARE.FEET <- as.numeric(gsub("[^[:digit:]]", "", statenisland_data$LAND.SQUARE.FEET))
+statenisland_data$GROSS.SQUARE.FEET <- as.numeric(gsub("[^[:digit:]]", "", statenisland_data$GROSS.SQUARE.FEET))
+statenisland_data$YEAR.BUILT <- as.numeric(as.character(statenisland_data$YEAR.BUILT))
+statenisland_data$SALE.PRICE <- as.numeric(gsub("[^[:digit:]]", "", statenisland_data$SALE.PRICE))
+```
+
+#Subset the dataset and take required fields, correlate between the square feet of land and the sale price.
+```{r Subsetting Data}
+st.subset <- subset(x = statenisland_data, 
+  ((statenisland_data$LAND.SQUARE.FEET > 1000) &  
+     (statenisland_data$SALE.PRICE > 1000)), select = c(15,17,20))
+str(st.subset)
+cor(st.subset$LAND.SQUARE.FEET, st.subset$SALE.PRICE)
+```
+
+##Plot showing relation between year built and square feet. we see lots of houses are built after the year 1980. Later a table of the year built is done to double check if this is true.
+```{r Plotting Data}
+st.subset$SALE.PRICE <- (st.subset$SALE.PRICE/1000)
+st.subset2 <- subset(x = statenisland_data, (statenisland_data$YEAR.BUILT > 1900 & 
+  statenisland_data$LAND.SQUARE.FEET > 1000 & statenisland_data$LAND.SQUARE.FEET < 20000), select = c(15, 17))
+
+str(st.subset2)
+
+plot(st.subset2$YEAR.BUILT, st.subset2$LAND.SQUARE.FEET, main = "Square Feet Vs year Built", xlab= "Year Built", ylab = "Square Feet ")
+table(st.subset2$YEAR.BUILT)
+```
+
+
+## Another plot -  let's look at family homes of 2000 - 2500 square feet and plot the prices
+```{r Plotting mid size family homes and prices}
+
+st.mid_size_home <- statenisland_data$LAND.SQUARE.FEET[which(statenisland_data$LAND.SQUARE.FEET > 2000 & statenisland_data$LAND.SQUARE.FEET < 2500)]
+st.mid_size_home_value <- statenisland_data$SALE.PRICE[which(statenisland_data$LAND.SQUARE.FEET > 2000 & statenisland_data$LAND.SQUARE.FEET < 2500)]
+hist(st.mid_size_home)
+plot(st.mid_size_home, st.mid_size_home_value,main="Mid Size House Prices", xlab="Sale Price in dollars", ylab="Square feet", pch=19)
+```
