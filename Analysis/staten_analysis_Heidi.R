@@ -58,4 +58,14 @@ staten.homes$outliers <- (log10(staten.homes$sale.price.n) <=5) + (log10(staten.
 staten.homes <- staten.homes[which(staten.homes$outliers==0),]
 plot(log10(staten.homes$gross.sqft),log10(staten.homes$sale.price.n),main="Fig.4: log(Sales Price) vs. log(Gross Sqft) for 1 to 3 \n Family Dwelling (>$100K and > 100 gross sqft)")
 
+## summary of the data set after removing outliners. 
+summary(staten.homes)
 
+## It appears that there a positive correlation between price and gross sqft
+## larger homes sold for higher price. 
+## correlation is r = 0.55870
+cor(log10(staten.homes$gross.sqft),log10(staten.homes$sale.price.n))
+
+## linear regression line of 
+plot(log10(staten.homes$gross.sqft) ~ log10(staten.homes$sale.price.n), main="Fig.5: Regression of log(Sales Price) ~ log(Gross Sqft) for 1 to 3 \n Family Dwelling (>$100K and > 100 gross sqft)")
+abline(lm(log10(staten.homes$gross.sqft) ~ log10(staten.homes$sale.price.n)), col="red")
