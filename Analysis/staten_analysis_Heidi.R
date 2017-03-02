@@ -36,6 +36,12 @@ attach(staten)
 hist(sale.price.n) 
 detach(staten)
 
+## write the cleaned data set: 
+write.csv(staten,"./Data/clean_staten.csv")
+
+# use read.csv to import the cleaned data set
+staten <- read.csv("./Data/clean_staten.csv")
+
 ## keep only the actual sales where price is not $0 
 staten.sale <- staten[staten$sale.price.n!=0,]
 plot(staten.sale$gross.sqft,staten.sale$sale.price.n,main="Fig.1: Sales Price vs. Gross Sqft")
@@ -61,7 +67,7 @@ plot(log10(staten.homes$gross.sqft),log10(staten.homes$sale.price.n),main="Fig.4
 ## summary of the data set after removing outliners. 
 summary(staten.homes)
 
-## It appears that there a positive correlation between price and gross sqft
+## It appears that there's a positive correlation between price and gross sqft
 ## larger homes sold for higher price. 
 ## correlation is r = 0.55870
 cor(log10(staten.homes$gross.sqft),log10(staten.homes$sale.price.n))
