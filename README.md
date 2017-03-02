@@ -19,15 +19,17 @@ DDS Assignment for 2017.03.02
 
 ###General###
 
-  The project is a first project done to understand how to interact with GitHub, R Studio and push and pull files between the two. Students were expected to install R Studio and create account in GitHub. Link their GitHub account to R Studio and push to a shared repository to complete the above work.
+  The project is a first project done to understand how to interact with GitHub, R Studio and push and pull files between the   two. Students were expected to install R Studio and create account in GitHub. Link their GitHub account to R Studio and push   to a shared repository to complete the above work.
 
   Tests run under R-Studio.
 
 ###Contributors###
 
-  Peter Kouvaris
   Asha Mohan
+  
   Heidi Nguyen
+  
+  Peter Kouvaris
 
 License
 Opensource
