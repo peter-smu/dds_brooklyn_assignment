@@ -10,8 +10,11 @@ DDS Assignment for 2017.03.02
 ###Structure of project###
 
   The project consists of 3 major pieces:
+  
     1. Data - raw data files pulled from [NYC Gov](http://www1.nyc.gov/site/finance/taxes/property-rolling-sales-data.page) cleaned for Analysis.
+    
     2. Analysis - cleaned data was summarized and meaningful relationships were visualized.
+    
     3. Paper - the process was compiled into a readable format for review.
 
 ###General###
